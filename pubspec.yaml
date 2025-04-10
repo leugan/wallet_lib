@@ -1,0 +1,44 @@
+name: wallet_lib
+description: A multi-chain wallet application.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.5.0'
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  wallet: ^0.0.13
+  web3dart: ^2.7.0
+  bip39: ^1.0.6
+  hex: ^0.2.0
+  ed25519_hd_key: ^2.2.0
+  eip1559: ^0.6.2
+  http: ^1.0.0
+  shared_preferences: ^2.2.1
+  webview_flutter: ^4.2.2
+  intl: ^0.18.1
+  qr_flutter: ^4.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/dapp/
+    - assets/icons/token/
+    - assets/scripts/dapp/
+    - assets/config/
+  module:
+    androidX: true
+    androidPackage: com.wallet_lib
+    iosBundleIdentifier: com.wallet_lib
