@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_core/features/home/screens/main_screen.dart';
+import 'package:wallet_lib/features/home/screens/main_screen.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

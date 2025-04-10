@@ -11,7 +11,9 @@ dependencies:
     sdk: flutter
   wallet_lib:
     path: ../
-
+#    git:
+#      url: https://github.com/leugan/wallet_lib.git
+#      ref: "v0.1.0"
 dev_dependencies:
   flutter_test:
     sdk: flutter
