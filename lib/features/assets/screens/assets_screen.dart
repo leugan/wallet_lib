@@ -13,7 +13,7 @@ class AssetsScreen extends StatefulWidget {
   const AssetsScreen({super.key});
 
   @override
-  _AssetsScreenState createState() => _AssetsScreenState();
+  State<AssetsScreen> createState() => _AssetsScreenState();
 }
 
 class _AssetsScreenState extends State<AssetsScreen> with WidgetsBindingObserver {
@@ -21,7 +21,8 @@ class _AssetsScreenState extends State<AssetsScreen> with WidgetsBindingObserver
   String _currentAddress = '';
   String _currentChainType = 'ETH';
   bool _isLoading = true;
-// 修正为 ChainConfig 类型
+  // 添加总资产价值状态
+  double _totalUsdValue = 0.0;
   
   @override
   void initState() {
@@ -102,6 +103,13 @@ class _AssetsScreenState extends State<AssetsScreen> with WidgetsBindingObserver
   }
   
   
+  // 添加更新总资产价值的方法
+  void _updateTotalUsdValue(double value) {
+    setState(() {
+      _totalUsdValue = value;
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
     ChainConfigs.getChainConfig(_currentChainType); // 修正方法调用
@@ -163,11 +171,12 @@ class _AssetsScreenState extends State<AssetsScreen> with WidgetsBindingObserver
                 )
               : Column(
                   children: [
-                    // 余额卡片
+                    // 余额卡片 - 传递总资产价值
                     BalanceCard(
                       useDarkStyle: true,
                       address: _currentAddress,
                       chainType: _currentChainType,
+                      totalUsdValue: _totalUsdValue,
                     ),
                     
                     
@@ -271,6 +280,7 @@ class _AssetsScreenState extends State<AssetsScreen> with WidgetsBindingObserver
                           : TokenList(
                               address: _currentAddress,
                               chainType: _currentChainType,
+                              onTotalValueChanged: _updateTotalUsdValue,
                             ),
                     ),
                   ],

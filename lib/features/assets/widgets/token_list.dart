@@ -9,15 +9,18 @@ import '../../../models/token.dart';
 class TokenList extends StatefulWidget {
   final String address;
   final String chainType;
+  // 添加回调函数参数
+  final Function(double)? onTotalValueChanged;
 
   const TokenList({
     Key? key,
     required this.address,
     required this.chainType,
+    this.onTotalValueChanged,
   }) : super(key: key);
 
   @override
-  _TokenListState createState() => _TokenListState();
+  State<TokenList> createState() => _TokenListState();
 }
 
 class _TokenListState extends State<TokenList> {
@@ -232,6 +235,17 @@ class _TokenListState extends State<TokenList> {
         }
       }
 
+      // 计算总资产价值
+      double totalValue = 0.0;
+      for (var token in updatedTokens) {
+        totalValue += token.balance * token.price;
+      }
+
+      // 通过回调函数传递总资产价值
+      if (widget.onTotalValueChanged != null) {
+        widget.onTotalValueChanged!(totalValue);
+      }
+
       // 更新UI
       if (mounted) {
         setState(() {
@@ -408,8 +422,8 @@ class _TokenListState extends State<TokenList> {
 Widget _getTokenIcon(String symbol) {
   return Image.asset(
     'assets/icons/token/$symbol.png',
-    width: 24,
-    height: 24,
+    width: 36,
+    height: 36,
     errorBuilder: (context, error, stackTrace) {
       // 当图片加载失败时，显示首字母
       return Text(
