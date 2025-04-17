@@ -20,7 +20,7 @@ class DAppBrowserScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _DAppBrowserScreenState createState() => _DAppBrowserScreenState();
+  State<DAppBrowserScreen> createState() => _DAppBrowserScreenState();
 }
 
 class _DAppBrowserScreenState extends State<DAppBrowserScreen> {
